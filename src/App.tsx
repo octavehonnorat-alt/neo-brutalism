@@ -119,10 +119,10 @@ function App() {
         <section id="about" className="section about" data-reveal>
           <h2>Design Dynamics</h2>
           <ul>
-            <li>High contrast palette with #FF4911 as primary attention color.</li>
-            <li>Thick borders and hard offset shadows for all actionable elements.</li>
-            <li>State-driven interactions: hover lift, active press, and visible focus.</li>
-            <li>Entrance reveal and motion-safe behavior with reduced-motion fallback.</li>
+            <li>Luxury palette — Albâtre white (#F4F4F0), deep ink (#0A0A0A) and Oxblood accent (#4A0404).</li>
+            <li>Flat, fully shadowless interface — zero drop-shadow, zero gradients, zero border-radius.</li>
+            <li>Monumental grotesque typography at oversized scale; structure as decoration.</li>
+            <li>Refined motion — reveal eases, colour-swap hover states, reduced-motion fallback.</li>
           </ul>
         </section>
 
