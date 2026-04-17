@@ -10,6 +10,8 @@
   --lavender: #c7b7ff;
   --border-thick: 3px;
   --shadow-offset: 5px;
+  --bg-surface: #ffffff;
+  --bg-dot-color: rgba(15, 15, 18, 0.28);
   --display:
     'Archivo Black', 'Arial Black', 'Segoe UI', 'Helvetica Neue', sans-serif;
   --body: 'Inter', 'Avenir Next', 'Segoe UI', sans-serif;
@@ -21,6 +23,58 @@
   -moz-osx-font-smoothing: grayscale;
   background: #fbf6ee;
   color: var(--ink);
+}
+
+/* ── Ocean Dive ──────────────────────────────────────── */
+[data-theme="ocean"] {
+  --accent: #0055ee;
+  --sky: #00d4ff;
+  --pink: #b3ecff;
+  --yellow: #fff176;
+  --green: #00ffcc;
+  --lavender: #9999ff;
+  --bg-surface: #f0f8ff;
+  --bg-dot-color: rgba(0, 85, 238, 0.14);
+  background: #eef6ff;
+}
+
+/* ── Toxic Jungle ────────────────────────────────────── */
+[data-theme="jungle"] {
+  --accent: #00bb00;
+  --sky: #99ffcc;
+  --pink: #ffcc99;
+  --yellow: #ccff44;
+  --green: #66ff44;
+  --lavender: #aaff99;
+  --bg-surface: #f5fff5;
+  --bg-dot-color: rgba(0, 187, 0, 0.18);
+  background: #f0fff4;
+}
+
+/* ── Candy Pop ───────────────────────────────────────── */
+[data-theme="candy"] {
+  --accent: #ee0088;
+  --sky: #ffbbdd;
+  --pink: #ff66aa;
+  --yellow: #ff99cc;
+  --green: #ffbbee;
+  --lavender: #cc44ff;
+  --bg-surface: #fff5fb;
+  --bg-dot-color: rgba(238, 0, 136, 0.14);
+  background: #fff0f8;
+}
+
+/* ── Solar Flare ─────────────────────────────────────── */
+[data-theme="solar"] {
+  --accent: #ff8800;
+  --sky: #ff99aa;
+  --pink: #ffcc66;
+  --yellow: #ffdd00;
+  --green: #aaff00;
+  --lavender: #ffaacc;
+  --bg-surface: #fffbf0;
+  --bg-dot-color: rgba(255, 136, 0, 0.16);
+  background: #fffbf0;
 }
 
 * {
@@ -45,9 +99,10 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-color: #ffffff;
-  background-image: radial-gradient(circle, rgba(15, 15, 18, 0.28) 1.5px, transparent 1.5px);
+  background-color: var(--bg-surface);
+  background-image: radial-gradient(circle, var(--bg-dot-color) 1.5px, transparent 1.5px);
   background-size: 22px 22px;
+  transition: background-color 0.4s ease;
 }
 
 p {

@@ -298,10 +298,78 @@ h3 {
   color: var(--ink);
 }
 
+/* ── Theme Picker ────────────────────────────────────── */
+
+.theme-picker {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.theme-toggle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: var(--border-thick) solid var(--ink);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
+  cursor: pointer;
+  padding: 0;
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
+  will-change: box-shadow;
+}
+
+.theme-toggle:hover {
+  box-shadow: calc(var(--shadow-offset) + 3px) calc(var(--shadow-offset) + 3px) 0 var(--ink);
+  transform: scale(1.08);
+}
+
+.theme-toggle:active {
+  box-shadow: 1px 1px 0 var(--ink);
+  transform: scale(0.95);
+}
+
+.theme-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  display: flex;
+  gap: 0.45rem;
+  background: #000000;
+  border: var(--border-thick) solid #000000;
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #ffffff;
+  padding: 0.5rem;
+  z-index: 30;
+}
+
+.theme-dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: var(--border-thick) solid #ffffff;
+  box-shadow: 2px 2px 0 #ffffff;
+  cursor: pointer;
+  padding: 0;
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+  will-change: box-shadow;
+}
+
+.theme-dot:hover {
+  box-shadow: 4px 4px 0 #ffffff;
+  transform: scale(1.15);
+}
+
+.theme-dot:active {
+  box-shadow: 1px 1px 0 #ffffff;
+  transform: scale(0.92);
+}
+
+.theme-dot.is-active {
+  box-shadow: 0 0 0 3px #ffffff, 4px 4px 0 #ffffff;
+}
+
 /* ── Void ────────────────────────────────────────────── */
 
 .void {
-  height: 100vh;
+  min-height: 100vh;
   background: #000000;
 }
 
@@ -453,7 +521,164 @@ h3 {
   transform: translateY(0);
 }
 
-/* ── Focus ───────────────────────────────────────────── */
+/* ── Void inner content ──────────────────────────────── */
+
+.void-inner {
+  padding: clamp(2.5rem, 5vw, 5rem) clamp(1rem, 2vw, 2rem) clamp(3rem, 6vw, 6rem);
+}
+
+.void-header {
+  margin-bottom: 2.5rem;
+  border-bottom: 2px solid #333333;
+  padding-bottom: 2rem;
+}
+
+.void-eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  padding: 0.2rem 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.void-title {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  color: #ffffff;
+  margin: 0 0 0.75rem;
+  line-height: 1;
+}
+
+.void-subtitle {
+  color: #888888;
+  font-size: 0.92rem;
+  max-width: 60ch;
+}
+
+/* ── Void accordion menus ────────────────────────────── */
+
+.void-menus {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.void-menu {
+  border: 3px solid var(--menu-color, #ffffff);
+  box-shadow: 5px 5px 0 var(--menu-color, #ffffff);
+}
+
+.void-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: #111111;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.void-menu-header:hover {
+  background: #1a1a1a;
+}
+
+.void-menu-header:active {
+  background: #222222;
+}
+
+.void-menu.is-open .void-menu-header {
+  background: #1a1a1a;
+  border-bottom: 2px solid var(--menu-color, #ffffff);
+}
+
+.void-menu-title {
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--menu-color, #ffffff);
+  letter-spacing: 0.02em;
+}
+
+.void-menu-toggle {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--menu-color, #ffffff);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.void-menu.is-open .void-menu-toggle {
+  transform: rotate(180deg);
+}
+
+.void-menu-body {
+  display: none;
+  padding: 0;
+  background: #0a0a0a;
+}
+
+.void-menu.is-open .void-menu-body {
+  display: grid;
+}
+
+.void-menu-item {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #1e1e1e;
+  transition: background-color 0.15s ease;
+}
+
+.void-menu-item:last-child {
+  border-bottom: none;
+}
+
+.void-menu-item:hover {
+  background: #111111;
+}
+
+.void-item-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.3rem;
+}
+
+.void-item-desc {
+  font-size: 0.82rem;
+  color: #666666;
+  line-height: 1.5;
+}
+
+.void-footer-note {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #333333;
+}
+
+/* ── Responsive (void + theme picker) ───────────────── */
+
+@media (max-width: 900px) {
+  .topbar {
+    flex-wrap: wrap;
+  }
+
+  .theme-picker {
+    order: -1;
+    margin-left: auto;
+  }
+}
 
 a:focus-visible {
   outline: 3px solid var(--ink);
