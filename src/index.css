@@ -1,25 +1,23 @@
 :root {
-  --accent: #ff4911;
-  --ink: #0f0f12;
-  --ink-soft: #2f2f39;
-  --surface: #fffdf7;
-  --sky: #85d9ff;
-  --pink: #ffa7cd;
-  --yellow: #ffe96a;
-  --green: #7dff8f;
-  --lavender: #c7b7ff;
-  --border-thick: 3px;
-  --shadow-offset: 5px;
-  --display:
-    'Archivo Black', 'Arial Black', 'Segoe UI', 'Helvetica Neue', sans-serif;
-  --body: 'Inter', 'Avenir Next', 'Segoe UI', sans-serif;
+  --accent: #4a0404;
+  --ink: #0a0a0a;
+  --ink-soft: #4a4a4a;
+  --ink-hover: color-mix(in srgb, var(--ink) 90%, var(--surface));
+  --surface: #f4f4f0;
+  --surface-alpha-high: color-mix(in srgb, var(--surface) 88%, transparent);
+  --surface-alpha-mid: color-mix(in srgb, var(--surface) 78%, transparent);
+  --surface-alpha-low: color-mix(in srgb, var(--surface) 72%, transparent);
+  --surface-alpha-faint: color-mix(in srgb, var(--surface) 20%, transparent);
+  --border: 2px;
+  --display: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
+  --body: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
 
   font-family: var(--body);
   font-synthesis: none;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #fbf6ee;
+  background: var(--surface);
   color: var(--ink);
 }
 
@@ -36,10 +34,8 @@ body,
 
 body {
   min-height: 100vh;
-  line-height: 1.45;
-  background-color: #ffffff;
-  background-image: radial-gradient(circle, rgba(15, 15, 18, 0.28) 1.5px, transparent 1.5px);
-  background-size: 22px 22px;
+  line-height: 1.5;
+  background: var(--surface);
 }
 
 p {
