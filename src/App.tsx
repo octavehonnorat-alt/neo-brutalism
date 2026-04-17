@@ -39,22 +39,59 @@ const links = [
 function App() {
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced) return
 
-    const items = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'))
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible')
-          }
+    if (!reduced) {
+      const items = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]:not([data-reveal="void"])'))
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible')
+            }
+          })
+        },
+        { threshold: 0.12 },
+      )
+      items.forEach((item) => observer.observe(item))
+
+      const voidEl = document.querySelector<HTMLElement>('[data-reveal="void"]')
+      const voidObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible')
+            }
+          })
+        },
+        { threshold: 0.01, rootMargin: '0px 0px 80px 0px' },
+      )
+      if (voidEl) voidObserver.observe(voidEl)
+
+      const replaySection = (hash: string) => {
+        if (!hash) return
+        const target = document.querySelector<HTMLElement>(hash)
+        if (!target || !target.hasAttribute('data-reveal')) return
+        target.classList.remove('is-visible')
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            target.classList.add('is-visible')
+          })
         })
-      },
-      { threshold: 0.12 },
-    )
+      }
 
-    items.forEach((item) => observer.observe(item))
-    return () => observer.disconnect()
+      const handleHashChange = () => replaySection(window.location.hash)
+      window.addEventListener('hashchange', handleHashChange)
+
+      return () => {
+        observer.disconnect()
+        voidObserver.disconnect()
+        window.removeEventListener('hashchange', handleHashChange)
+      }
+    } else {
+      document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
+        el.classList.add('is-visible')
+      })
+    }
   }, [])
 
   return (
@@ -195,7 +232,7 @@ function App() {
           Back to top ↑
         </a>
       </footer>
-      <div className="void" />
+      <div className="void" data-reveal="void" />
     </div>
   )
 }
