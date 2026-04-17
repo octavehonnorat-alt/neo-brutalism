@@ -167,6 +167,10 @@ h3 {
   opacity: 0.7;
 }
 
+.magnetic {
+  will-change: transform;
+}
+
 /* ── Projects grid ───────────────────────────────────── */
 
 .section-head {
@@ -218,7 +222,7 @@ h3 {
 }
 
 .card:nth-child(2) p {
-  color: rgba(244, 244, 240, 0.78);
+  color: var(--surface-alpha-mid);
 }
 
 .card:nth-child(3) {
@@ -231,7 +235,7 @@ h3 {
 }
 
 .card:nth-child(3) p {
-  color: rgba(244, 244, 240, 0.7);
+  color: var(--surface-alpha-mid);
 }
 
 .card:hover {
@@ -240,7 +244,7 @@ h3 {
 
 .card:nth-child(2):hover,
 .card:nth-child(3):hover {
-  background: #1a1a1a;
+  background: var(--ink-hover);
 }
 
 .tag {
@@ -257,7 +261,7 @@ h3 {
 
 .card:nth-child(2) .tag,
 .card:nth-child(3) .tag {
-  color: rgba(244, 244, 240, 0.72);
+  color: var(--surface-alpha-low);
 }
 
 .card p {
@@ -300,15 +304,15 @@ h3 {
   list-style: none;
   display: grid;
   gap: 0;
-  border-top: 1px solid rgba(244, 244, 240, 0.2);
+  border-top: 1px solid var(--surface-alpha-faint);
 }
 
 .about li {
-  color: rgba(244, 244, 240, 0.88);
+  color: var(--surface-alpha-high);
   font-size: 0.95rem;
   line-height: 1.65;
   padding: 1rem 0;
-  border-bottom: 1px solid rgba(244, 244, 240, 0.2);
+  border-bottom: 1px solid var(--surface-alpha-faint);
   padding-left: 1.25rem;
   position: relative;
 }
@@ -370,7 +374,7 @@ h3 {
 /* ── Focus ───────────────────────────────────────────── */
 
 a:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: var(--border) solid currentColor;
   outline-offset: 3px;
 }
 

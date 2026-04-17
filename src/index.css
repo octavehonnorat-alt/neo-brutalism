@@ -2,7 +2,12 @@
   --accent: #4a0404;
   --ink: #0a0a0a;
   --ink-soft: #4a4a4a;
+  --ink-hover: color-mix(in srgb, var(--ink) 90%, var(--surface));
   --surface: #f4f4f0;
+  --surface-alpha-high: color-mix(in srgb, var(--surface) 88%, transparent);
+  --surface-alpha-mid: color-mix(in srgb, var(--surface) 78%, transparent);
+  --surface-alpha-low: color-mix(in srgb, var(--surface) 72%, transparent);
+  --surface-alpha-faint: color-mix(in srgb, var(--surface) 20%, transparent);
   --border: 2px;
   --display: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
   --body: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
