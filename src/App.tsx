@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import './App.css'
 
 type Project = {
@@ -37,35 +37,6 @@ const links = [
 ]
 
 function App() {
-  const magneticRefs = useRef<HTMLAnchorElement[]>([])
-
-  useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced) return
-
-    const cleanups = magneticRefs.current.map((el) => {
-      const onMove = (event: MouseEvent) => {
-        const rect = el.getBoundingClientRect()
-        const x = event.clientX - rect.left - rect.width / 2
-        const y = event.clientY - rect.top - rect.height / 2
-        el.style.transform = `translate(${x * 0.1}px, ${y * 0.12}px)`
-      }
-
-      const onLeave = () => {
-        el.style.transform = 'translate(0, 0)'
-      }
-
-      el.addEventListener('mousemove', onMove)
-      el.addEventListener('mouseleave', onLeave)
-      return () => {
-        el.removeEventListener('mousemove', onMove)
-        el.removeEventListener('mouseleave', onLeave)
-      }
-    })
-
-    return () => cleanups.forEach((cleanup) => cleanup())
-  }, [])
-
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduced) return
@@ -114,10 +85,7 @@ function App() {
           <div className="actions">
             <a
               href="#projects"
-              className="btn btn-primary magnetic"
-              ref={(el) => {
-                if (el) magneticRefs.current[0] = el
-              }}
+              className="btn btn-primary"
             >
               Explore projects
             </a>
@@ -164,22 +132,60 @@ function App() {
           <div className="actions">
             <a
               href="mailto:hello@example.com"
-              className="btn btn-primary magnetic"
-              ref={(el) => {
-                if (el) magneticRefs.current[1] = el
-              }}
+              className="btn btn-primary"
             >
               hello@example.com
             </a>
-            <a
-              href="https://neubrutali-portfolio-d4gmydmg.sites.blink.new/"
-              className="btn btn-secondary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Reference website
-            </a>
           </div>
+        </section>
+
+        <section className="section features" data-reveal>
+          <div className="section-head">
+            <h2>Why Neo-Brutalism</h2>
+          </div>
+          <div className="features-grid">
+            <div className="feature-item">
+              <span className="feature-number">01</span>
+              <h3>Radical Clarity</h3>
+              <p>No shadows that blend. No rounded corners that soften. Every element is deliberate and visible.</p>
+            </div>
+            <div className="feature-item">
+              <span className="feature-number">02</span>
+              <h3>Uncompromising Contrast</h3>
+              <p>Black on white. White on black. Flat color on flat color. Legibility is non-negotiable.</p>
+            </div>
+            <div className="feature-item">
+              <span className="feature-number">03</span>
+              <h3>Honest Interaction</h3>
+              <p>Hover states are explicit. Active states are dramatic. The interface tells you exactly what it is doing.</p>
+            </div>
+            <div className="feature-item">
+              <span className="feature-number">04</span>
+              <h3>Typographic Power</h3>
+              <p>Type is the primary visual asset. Weight, size, and spacing do the heavy lifting.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section process" data-reveal>
+          <h2>Process</h2>
+          <ol className="process-list">
+            <li>
+              <strong>Define the grid.</strong> Start with a rigid layout system — columns, gutters, and a baseline grid that everything snaps to.
+            </li>
+            <li>
+              <strong>Choose one accent.</strong> A single high-saturation color used sparingly for maximum impact.
+            </li>
+            <li>
+              <strong>Draw the borders.</strong> Every interactive element gets a thick, solid border. No hairlines.
+            </li>
+            <li>
+              <strong>Add the shadow.</strong> Hard offset shadows at 45 degrees. No blur. No spread. Just offset.
+            </li>
+            <li>
+              <strong>Write for hierarchy.</strong> Headlines are big. Labels are bold. Body copy is lean.
+            </li>
+          </ol>
         </section>
       </main>
 
@@ -189,6 +195,7 @@ function App() {
           Back to top ↑
         </a>
       </footer>
+      <div className="void" />
     </div>
   )
 }
