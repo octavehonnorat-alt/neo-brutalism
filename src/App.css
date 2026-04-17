@@ -51,7 +51,9 @@
 
 .nav-link:hover {
   box-shadow: calc(var(--shadow-offset) + 3px) calc(var(--shadow-offset) + 3px)
-    0 var(--ink);
+    0 var(--ink),
+    0 0 14px rgba(255, 233, 106, 0.85),
+    0 0 28px rgba(255, 233, 106, 0.35);
   background: var(--yellow);
 }
 
@@ -71,7 +73,6 @@
 .pill {
   display: inline-block;
   border: var(--border-thick) solid var(--ink);
-  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
   background: var(--green);
   font-weight: 700;
   padding: 0.35rem 0.7rem;
@@ -89,6 +90,7 @@ h3 {
 h1 {
   font-size: clamp(2rem, 5vw, 4rem);
   line-height: 1;
+  text-shadow: 3px 3px 0 rgba(15, 15, 18, 0.08), 0 0 40px rgba(255, 73, 17, 0.18);
 }
 
 .lead {
@@ -129,6 +131,18 @@ h1 {
     0 var(--ink);
 }
 
+.btn-primary:hover {
+  box-shadow: calc(var(--shadow-offset) + 3px) calc(var(--shadow-offset) + 3px) 0 var(--ink),
+    0 0 22px rgba(255, 73, 17, 0.6),
+    0 0 50px rgba(255, 73, 17, 0.25);
+}
+
+.btn-secondary:hover {
+  box-shadow: calc(var(--shadow-offset) + 3px) calc(var(--shadow-offset) + 3px) 0 var(--ink),
+    0 0 18px rgba(255, 233, 106, 0.75),
+    0 0 40px rgba(255, 233, 106, 0.3);
+}
+
 .btn:active {
   box-shadow: 1px 1px 0 var(--ink);
 }
@@ -157,6 +171,13 @@ h1 {
   background: var(--pink);
   box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
   padding: 0.9rem;
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
+}
+
+.card:hover {
+  box-shadow: calc(var(--shadow-offset) + 4px) calc(var(--shadow-offset) + 4px) 0 var(--ink),
+    0 0 22px rgba(0, 0, 0, 0.12);
+  transform: translate(-3px, -3px);
 }
 
 .card:nth-child(2) {
@@ -269,6 +290,58 @@ h1 {
   color: var(--ink);
 }
 
+@keyframes popIn {
+  0% {
+    transform: scale(0.25) rotate(-10deg);
+  }
+  50% {
+    transform: scale(1.22) rotate(4deg);
+  }
+  72% {
+    transform: scale(0.91) rotate(-2deg);
+  }
+  88% {
+    transform: scale(1.06) rotate(1deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink),
+      0 0 0px transparent;
+  }
+  50% {
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink),
+      0 0 20px rgba(255, 73, 17, 0.55),
+      0 0 40px rgba(255, 73, 17, 0.22);
+  }
+}
+
+.pill {
+  animation: glowPulse 2.8s ease-in-out infinite;
+}
+
+[data-reveal].is-visible .btn {
+  animation: popIn 0.52s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.22s;
+}
+
+[data-reveal].is-visible .actions > .btn:nth-child(2) {
+  animation-delay: 0.36s;
+}
+
+.topbar[data-reveal].is-visible .nav-link {
+  animation: popIn 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.topbar[data-reveal].is-visible .nav-link:nth-child(1) { animation-delay: 0.12s; }
+.topbar[data-reveal].is-visible .nav-link:nth-child(2) { animation-delay: 0.20s; }
+.topbar[data-reveal].is-visible .nav-link:nth-child(3) { animation-delay: 0.28s; }
+.topbar[data-reveal].is-visible .nav-link:nth-child(4) { animation-delay: 0.36s; }
+
 [data-reveal] {
   opacity: 0;
   transform: translateY(18px);
@@ -318,5 +391,16 @@ a:focus-visible {
   [data-reveal] {
     opacity: 1;
     transform: none;
+  }
+
+  [data-reveal].is-visible .btn,
+  [data-reveal].is-visible .nav-link {
+    animation: none;
+    transform: none;
+  }
+
+  .pill {
+    animation: none;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
   }
 }
